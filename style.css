@@ -1,0 +1,340 @@
+/* ==========================================
+   1. VARIABLES (:root)
+   ========================================== */
+:root {
+  /* Colores */
+  --color-primary: #B91C1C;
+  --color-primary-dark: #991B1B;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-overlay: rgba(0, 0, 0, 0.65);
+
+  /* Tipografía */
+  --font-primary: 'Lora', serif, sans-serif;
+  --weight-regular: 400;
+  --weight-bold: 700;
+
+  /* Efectos y sombras */
+  --text-shadow-subtle: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  --transition-fast: 0.25s ease;
+}
+
+/* ==========================================
+   2. RESET CSS BASE
+   ========================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-weight: var(--weight-regular);
+  color: var(--color-white);
+  background-color: var(--color-black);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ==========================================
+   3. HERO SECTION
+   ========================================== */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  /* Imagen de fondo desde la carpeta imagenes/ */
+  background-image: url('imagenes/hero-bg.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+/* Overlay con gradiente dinámico */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.40) 0%,
+    rgba(0, 0, 0, 0.90) 50%,
+    rgba(0, 0, 0, 0.40) 100%
+  );
+  z-index: 1;
+}
+
+/* ==========================================
+   4. NAVBAR
+   ========================================== */
+.navbar {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: 2rem 3.5rem;
+}
+
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-img {
+  height: clamp(38px, 4.5vw, 52px);
+  width: auto;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: clamp(1.5rem, 3vw, 2.8rem);
+}
+
+.nav-link {
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  color: var(--color-white);
+  font-weight: var(--weight-regular);
+  text-shadow: var(--text-shadow-subtle);
+  transition: opacity var(--transition-fast);
+  position: relative;
+}
+
+.nav-link:hover {
+  opacity: 0.85;
+}
+
+/* Línea indicadora bajo la opción activa */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-white);
+  box-shadow: var(--text-shadow-subtle);
+}
+
+/* Botón Hamburguesa para móvil */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  z-index: 20;
+}
+
+.hamburger-btn .bar {
+  height: 3px;
+  width: 100%;
+  background-color: var(--color-white);
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ==========================================
+   5. CONTENIDO DEL HERO
+   ========================================== */
+.hero-content {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 1.5rem;
+  /* Desplazamiento ligero hacia arriba respecto al centro vertical */
+  transform: translateY(-4vh);
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-weight: var(--weight-bold);
+  color: var(--color-white);
+  margin-bottom: 1.2rem;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.hero-description {
+  font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+  font-weight: var(--weight-regular);
+  color: var(--color-white);
+  margin-bottom: 2.2rem;
+  max-width: 650px;
+  opacity: 0.95;
+}
+
+/* ==========================================
+   6. BOTÓN PRINCIPAL
+   ========================================== */
+.btn-primary {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  font-weight: var(--weight-regular);
+  padding: 0.65rem 1.8rem;
+  border-radius: 12px;
+  
+  /* Borde de 3px y fondo inferior de 5px */
+  border: 3px solid var(--color-black);
+  box-shadow: 0 5px 0 0 var(--color-black);
+  
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 0 var(--color-black);
+}
+
+.btn-primary:active {
+  transform: translateY(5px);
+  box-shadow: 0 0 0 0 var(--color-black);
+}
+
+/* ==========================================
+   7. RESPONSIVE
+   ========================================== */
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 1.5rem 2rem;
+  }
+}
+
+/* ==========================================
+   MENÚ MOBILE (PANTALLA COMPLETA SÓLIDA)
+   ========================================== */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        position: relative;
+        z-index: 100;
+        padding: 1.2rem 1.5rem;
+        background-color: transparent;
+        transition: background-color 0.25s ease;
+    }
+
+    /* Navbar sólido cuando el menú está abierto */
+    .navbar.is-open {
+        background-color: #303030;
+    }
+
+    .hamburger-btn {
+        display: flex;
+        z-index: 101;
+    }
+
+    /* PANEL DEL MENÚ MOBILE (PANTALLA COMPLETA) */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh; /* Adaptación precisa a navegadores móviles */
+        z-index: 90;
+
+        /* Fondo completamente sólido */
+        background-color: #303030;
+
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        padding: 2.5rem 0;
+        gap: 2.5rem;
+
+        /* Estado inicial: CERRADO */
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-12px);
+
+        /* Evita animaciones al redimensionar la ventana */
+        transition: none;
+    }
+
+    /* Aumento de legibilidad sobre fondo #303030 */
+    .nav-link {
+        font-size: 1.5rem;
+    }
+
+    /* MENÚ ABIERTO */
+    .nav-menu.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            visibility 0.25s ease;
+    }
+
+    /* BOTÓN HAMBURGUESA → X */
+
+    .hamburger-btn.is-open .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .hamburger-btn.is-open .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger-btn.is-open .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    .hero-content {
+        transform: translateY(-2vh);
+        padding: 0 1.2rem;
+    }
+
+    .hero-description {
+        line-height: 1.4;
+    }
+}
